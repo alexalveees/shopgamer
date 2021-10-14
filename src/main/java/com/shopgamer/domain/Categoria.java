@@ -11,15 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Table
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	
 	@Id
+	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+	@Column
 	private String nome;
 
 	public Categoria() {
