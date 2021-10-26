@@ -8,8 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.shopgamer.domain.Categoria;
+import com.shopgamer.domain.Cidade;
+import com.shopgamer.domain.Estado;
 import com.shopgamer.domain.Produto;
 import com.shopgamer.repositories.CategoriaRepository;
+import com.shopgamer.repositories.CidadeRepository;
+import com.shopgamer.repositories.EstadoRepository;
 import com.shopgamer.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -20,6 +24,13 @@ public class ShopgamerApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShopgamerApplication.class, args);
@@ -43,7 +54,17 @@ public class ShopgamerApplication implements CommandLineRunner {
 		
 		categoriaRepository.saveAll(Arrays.asList(categoria,categoria2,categoria3,categoria4));
 		produtoRepository.saveAll(Arrays.asList(produto,produto2));
-
+		
+		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est2 = new Estado(null, "São Paulo");
+		
+		Cidade cid1 = new Cidade (null,"Capim Branco", est1);
+		
+		est1.getCidades().addAll(Arrays.asList(cid1));
+		
+		estadoRepository.saveAll(Arrays.asList(est1,est2));
+		cidadeRepository.saveAll(Arrays.asList(cid1));
+		
 		
 	}
 
