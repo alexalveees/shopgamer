@@ -1,5 +1,6 @@
 package com.shopgamer;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.shopgamer.domain.Categoria;
 import com.shopgamer.domain.Cidade;
+import com.shopgamer.domain.Cliente;
+import com.shopgamer.domain.Endereco;
 import com.shopgamer.domain.Estado;
 import com.shopgamer.domain.Produto;
+import com.shopgamer.domain.enums.TipoCliente;
 import com.shopgamer.repositories.CategoriaRepository;
 import com.shopgamer.repositories.CidadeRepository;
+import com.shopgamer.repositories.ClienteRepository;
+import com.shopgamer.repositories.EnderecoRepository;
 import com.shopgamer.repositories.EstadoRepository;
 import com.shopgamer.repositories.ProdutoRepository;
 
@@ -30,6 +36,12 @@ public class ShopgamerApplication implements CommandLineRunner {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 
 	public static void main(String[] args) {
@@ -64,6 +76,17 @@ public class ShopgamerApplication implements CommandLineRunner {
 		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1));
+		
+		Cliente cliente = new Cliente(null,"Alex Alves","alexalvesfd@hotmail.com","13476657688",TipoCliente.PESSOAFISICA);
+		cliente.getTelefones().addAll(Arrays.asList("37131313","995881695"));
+		
+		Endereco endereco = new Endereco(null,"Rua x","555","apt 2","Centro","3572000",cliente,cid1);
+		Endereco endereco2 = new Endereco(null,"Rua Y","115","apt 25","Represa","3573000",cliente,cid1);
+		
+		cliente.getEndereco().addAll(Arrays.asList(endereco,endereco2));
+		
+		clienteRepository.saveAll(Arrays.asList(cliente));
+		enderecoRepository.saveAll(Arrays.asList(endereco, endereco2));
 		
 		
 	}
