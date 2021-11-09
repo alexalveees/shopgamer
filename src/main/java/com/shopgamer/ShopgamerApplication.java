@@ -83,8 +83,8 @@ public class ShopgamerApplication implements CommandLineRunner {
 		Endereco endereco = new Endereco(null,"Rua x","555","apt 2","Centro","3572000",cliente,cid1);
 		Endereco endereco2 = new Endereco(null,"Rua Y","115","apt 25","Represa","3573000",cliente,cid1);
 		
-		cliente.getEndereco().addAll(Arrays.asList(endereco,endereco2));
-		
+		cliente.getEnderecos().addAll(Arrays.asList(endereco,endereco2));
+
 		clienteRepository.saveAll(Arrays.asList(cliente));
 		enderecoRepository.saveAll(Arrays.asList(endereco, endereco2));
 		
