@@ -2,8 +2,10 @@ package com.shopgamer.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table
 public class Produto implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -39,6 +40,8 @@ public class Produto implements Serializable {
 			inverseJoinColumns = @JoinColumn(name = "categoria_id")
 	)
 	private List<Categoria> categorias = new ArrayList<>();
+	
+	private Set<ItemPedido> itensproduto = new HashSet<>();
 
 	public Produto() {}
 
@@ -47,6 +50,14 @@ public class Produto implements Serializable {
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
+	}
+	
+	public List<Pedido> getPedidos(){
+		 List<Pedido> lista = new ArrayList<>();
+		 for(ItemPedido x : itensproduto) {
+			 lista.add(x.getPedido());
+		 }
+		 return lista;
 	}
 
 	public Integer getId() {
@@ -80,6 +91,14 @@ public class Produto implements Serializable {
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
+	
+	public Set<ItemPedido> getItensproduto() {
+		return itensproduto;
+	}
+
+	public void setItensproduto(Set<ItemPedido> itensproduto) {
+		this.itensproduto = itensproduto;
+	}
 
 	@Override
 	public int hashCode() {
@@ -97,5 +116,7 @@ public class Produto implements Serializable {
 		Produto other = (Produto) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 
 }
