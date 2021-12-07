@@ -1,6 +1,7 @@
 package com.shopgamer;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.shopgamer.domain.Cidade;
 import com.shopgamer.domain.Cliente;
 import com.shopgamer.domain.Endereco;
 import com.shopgamer.domain.Estado;
+import com.shopgamer.domain.ItemPedido;
 import com.shopgamer.domain.Pagamento;
 import com.shopgamer.domain.PagamentoComBoleto;
 import com.shopgamer.domain.PagamentoComCartao;
@@ -25,6 +27,7 @@ import com.shopgamer.repositories.CidadeRepository;
 import com.shopgamer.repositories.ClienteRepository;
 import com.shopgamer.repositories.EnderecoRepository;
 import com.shopgamer.repositories.EstadoRepository;
+import com.shopgamer.repositories.ItemPedidoRepository;
 import com.shopgamer.repositories.PagamentoRepository;
 import com.shopgamer.repositories.PedidoRepository;
 import com.shopgamer.repositories.ProdutoRepository;
@@ -55,6 +58,9 @@ public class ShopgamerApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 
 	public static void main(String[] args) {
@@ -101,21 +107,33 @@ public class ShopgamerApplication implements CommandLineRunner {
 		clienteRepository.saveAll(Arrays.asList(cliente));
 		enderecoRepository.saveAll(Arrays.asList(endereco, endereco2));
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		LocalDateTime agora = LocalDateTime.now();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Pedido pedido = new Pedido(null, sdf.parse("10/11/2021 15:08"), null, cliente, endereco);
-		Pedido pedido2 = new Pedido(null, sdf.parse("10/11/2021 15:10"), null, cliente, endereco2);
-		
+		Pedido pedido = new Pedido(null, agora, null, cliente, endereco);
+		Pedido pedido2 = new Pedido(null,agora, null, cliente, endereco2);
 		Pagamento pagamento = new PagamentoComCartao(null, EstadoPagamento.QUITADO, pedido, 6);
 		pedido.setPagamento(pagamento);
 		
-		Pagamento pagamento2 = new PagamentoComBoleto(null,EstadoPagamento.PEDENTE, pedido2, sdf.parse("10/11/2021 00:00"), null);
+		
+		Pagamento pagamento2 = new PagamentoComBoleto(null,EstadoPagamento.PEDENTE, pedido2, sdf.parse("20/12/2021"), null);
 		pedido2.setPagamento(pagamento2);
 		
 		cliente.getPedidos().addAll(Arrays.asList(pedido,pedido2));
 		
 		pedidoRepository.saveAll(Arrays.asList(pedido, pedido2));
 		pagamentoRepository.saveAll(Arrays.asList(pagamento, pagamento2));
+		
+		ItemPedido itemPedido = new ItemPedido(pedido,produto,0.00,1,2000.00);
+		ItemPedido itemPedido2 = new ItemPedido(pedido2,produto2,50.00,2,4000.00);
+		
+		pedido.getItenspedido().addAll(Arrays.asList(itemPedido));
+		pedido2.getItenspedido().addAll(Arrays.asList(itemPedido2));
+		
+		produto.getItensproduto().addAll(Arrays.asList(itemPedido));
+		produto2.getItensproduto().addAll(Arrays.asList(itemPedido2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(itemPedido,itemPedido2));
 		
 	}
 

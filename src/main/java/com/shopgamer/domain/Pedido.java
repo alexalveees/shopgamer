@@ -1,7 +1,7 @@
 package com.shopgamer.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -13,7 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Pedido implements Serializable {
@@ -22,7 +25,9 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private Date instante;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private LocalDateTime instante;
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
@@ -35,13 +40,14 @@ public class Pedido implements Serializable {
 	@JoinColumn(name="endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
 	
+	@OneToMany(mappedBy="id.pedido")
 	private Set<ItemPedido> itenspedido = new HashSet<>();
 	
 	public Pedido() {
 		
 	}
 	
-	public Pedido(Integer id, Date instante, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
+	public Pedido(Integer id, LocalDateTime instante, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
 		this.instante = instante;
@@ -58,11 +64,11 @@ public class Pedido implements Serializable {
 		this.id = id;
 	}
 
-	public Date getInstante() {
+	public LocalDateTime getInstante() {
 		return instante;
 	}
 
-	public void setInstante(Date instante) {
+	public void setInstante(LocalDateTime instante) {
 		this.instante = instante;
 	}
 
