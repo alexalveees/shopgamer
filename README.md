@@ -1,3 +1,3 @@
-# shopgamer
+# ShopGamer
 
 Em Desenvolvimento...
