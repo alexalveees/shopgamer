@@ -73,6 +73,10 @@ public class ShopgamerApplication implements CommandLineRunner {
 		Categoria categoria2 = new Categoria(null, "PC Gamer");
 		Categoria categoria3 = new Categoria(null, "Vídeo Gamer");
 		Categoria categoria4 = new Categoria(null, "Teclado Gamer");
+		Categoria categoria5 = new Categoria(null, "Mesa Gamer");
+		Categoria categoria6 = new Categoria(null, "Fone Gamer");
+		Categoria categoria7 = new Categoria(null, "Notebook Gamer");
+		Categoria categoria8 = new Categoria(null, "Blusa Gamer");
 		
 		Produto produto = new Produto(null, "Cadeira Super XT12", 855.90);
 		Produto produto2 = new Produto(null, "Teclado Razon XP", 169.90);
@@ -83,7 +87,7 @@ public class ShopgamerApplication implements CommandLineRunner {
 		produto.getCategorias().addAll(Arrays.asList(categoria));
 		produto2.getCategorias().addAll(Arrays.asList(categoria4));
 		
-		categoriaRepository.saveAll(Arrays.asList(categoria,categoria2,categoria3,categoria4));
+		categoriaRepository.saveAll(Arrays.asList(categoria,categoria2,categoria3,categoria4,categoria5,categoria6,categoria7,categoria8));
 		produtoRepository.saveAll(Arrays.asList(produto,produto2));
 		
 		Estado est1 = new Estado(null, "Minas Gerais");
