@@ -80,15 +80,26 @@ public class ShopgamerApplication implements CommandLineRunner {
 		
 		Produto produto = new Produto(null, "Cadeira Super XT12", 855.90);
 		Produto produto2 = new Produto(null, "Teclado Razon XP", 169.90);
+		Produto produto3 = new Produto(null, "Camiseta Reader", 249.90);
+		Produto produto4 = new Produto(null, "Fone THG", 99.90);
+		Produto produto5 = new Produto(null, "Notebook Dell", 4169.90);
+		Produto produto6 = new Produto(null, "Notebook HP", 3468.40);
 		
 		categoria.getProdutos().addAll(Arrays.asList(produto));
 		categoria4.getProdutos().addAll(Arrays.asList(produto2));
+		categoria6.getProdutos().addAll(Arrays.asList(produto4));
+		categoria7.getProdutos().addAll(Arrays.asList(produto5, produto6));
+		categoria8.getProdutos().addAll(Arrays.asList(produto3));
 		
 		produto.getCategorias().addAll(Arrays.asList(categoria));
-		produto2.getCategorias().addAll(Arrays.asList(categoria4));
+		produto2.getCategorias().addAll(Arrays.asList(categoria2));
+		produto3.getCategorias().addAll(Arrays.asList(categoria8));
+		produto4.getCategorias().addAll(Arrays.asList(categoria2));
+		produto5.getCategorias().addAll(Arrays.asList(categoria7));
+		produto6.getCategorias().addAll(Arrays.asList(categoria7));
 		
 		categoriaRepository.saveAll(Arrays.asList(categoria,categoria2,categoria3,categoria4,categoria5,categoria6,categoria7,categoria8));
-		produtoRepository.saveAll(Arrays.asList(produto,produto2));
+		produtoRepository.saveAll(Arrays.asList(produto,produto2,produto3,produto4,produto5,produto6));
 		
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");
