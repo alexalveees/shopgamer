@@ -1,8 +1,8 @@
 package com.shopgamer;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -122,7 +122,7 @@ public class ShopgamerApplication implements CommandLineRunner {
 		clienteRepository.saveAll(Arrays.asList(cliente));
 		enderecoRepository.saveAll(Arrays.asList(endereco, endereco2));
 		
-		LocalDateTime agora = LocalDateTime.now();
+		Date agora = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		Pedido pedido = new Pedido(null, agora, null, cliente, endereco);

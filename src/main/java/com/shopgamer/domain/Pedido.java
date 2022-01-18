@@ -1,7 +1,7 @@
 package com.shopgamer.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -27,7 +27,7 @@ public class Pedido implements Serializable {
 	private Integer id;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private LocalDateTime instante;
+	private Date instante;
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
@@ -47,13 +47,21 @@ public class Pedido implements Serializable {
 		
 	}
 	
-	public Pedido(Integer id, LocalDateTime instante, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
+	public Pedido(Integer id, Date instante, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
 		this.instante = instante;
 		this.pagamento = pagamento;
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
+	}
+	
+	public Double getTotalPedido() {
+		double soma = 0;
+		for(ItemPedido ip : itenspedido) {
+			soma = soma + ip.getSubTotal();
+		}
+		return soma;
 	}
 
 	public Integer getId() {
@@ -64,11 +72,11 @@ public class Pedido implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDateTime getInstante() {
+	public Date getInstante() {
 		return instante;
 	}
 
-	public void setInstante(LocalDateTime instante) {
+	public void setInstante(Date instante) {
 		this.instante = instante;
 	}
 
