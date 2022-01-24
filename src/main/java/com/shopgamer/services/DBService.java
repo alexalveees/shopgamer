@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.shopgamer.domain.Categoria;
@@ -20,6 +21,7 @@ import com.shopgamer.domain.PagamentoComCartao;
 import com.shopgamer.domain.Pedido;
 import com.shopgamer.domain.Produto;
 import com.shopgamer.domain.enums.EstadoPagamento;
+import com.shopgamer.domain.enums.Perfil;
 import com.shopgamer.domain.enums.TipoCliente;
 import com.shopgamer.repositories.CategoriaRepository;
 import com.shopgamer.repositories.CidadeRepository;
@@ -33,6 +35,9 @@ import com.shopgamer.repositories.ProdutoRepository;
 
 @Service
 public class DBService {
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder; 
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -106,8 +111,9 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1));
 		
-		Cliente cliente = new Cliente(null,"Alex Alves","alexalvesfd@hotmail.com","13476657688",TipoCliente.PESSOAFISICA);
+		Cliente cliente = new Cliente(null,"Alex Alves","alexalvesfd@hotmail.com","13476657688",TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("12345"));
 		cliente.getTelefones().addAll(Arrays.asList("37131313","995881695"));
+		cliente.addPerfil(Perfil.ADMIN);
 		
 		Endereco endereco = new Endereco(null,"Rua x","555","apt 2","Centro","3572000",cliente,cid1);
 		Endereco endereco2 = new Endereco(null,"Rua Y","115","apt 25","Represa","3573000",cliente,cid1);
