@@ -115,19 +115,26 @@ public class DBService {
 		cliente.getTelefones().addAll(Arrays.asList("37131313","995881695"));
 		cliente.addPerfil(Perfil.ADMIN);
 		
-		Endereco endereco = new Endereco(null,"Rua x","555","apt 2","Centro","3572000",cliente,cid1);
-		Endereco endereco2 = new Endereco(null,"Rua Y","115","apt 25","Represa","3573000",cliente,cid1);
+		Cliente cliente2 = new Cliente(null,"Aline Jean","alinejean@hotmail.com","38990872081",TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123"));
+		cliente.getTelefones().addAll(Arrays.asList("996622111","9855664411"));
+		cliente.addPerfil(Perfil.CLIENTE);
 		
-		cliente.getEnderecos().addAll(Arrays.asList(endereco,endereco2));
+		Endereco endereco = new Endereco(null,"Rua x","555","apt 2","Centro","3572000",cliente,cid1);
+		Endereco endereco2 = new Endereco(null,"Rua Y","115","apt 25","Represa","3573000",cliente2,cid1);
+		Endereco endereco3 = new Endereco(null,"Rua x","555","apt 2","Centro","3572000",cliente2,cid1);
+		
+		cliente.getEnderecos().addAll(Arrays.asList(endereco));
+		cliente2.getEnderecos().addAll(Arrays.asList(endereco2));
 
-		clienteRepository.saveAll(Arrays.asList(cliente));
-		enderecoRepository.saveAll(Arrays.asList(endereco, endereco2));
+		clienteRepository.saveAll(Arrays.asList(cliente,cliente2));
+		enderecoRepository.saveAll(Arrays.asList(endereco, endereco2, endereco3));
 		
 		Date agora = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		Pedido pedido = new Pedido(null, agora, null, cliente, endereco);
 		Pedido pedido2 = new Pedido(null,agora, null, cliente, endereco2);
+		Pedido pedido3 = new Pedido(null,agora, null, cliente2, endereco2);
 		Pagamento pagamento = new PagamentoComCartao(null, EstadoPagamento.QUITADO, pedido, 6);
 		pedido.setPagamento(pagamento);
 		
@@ -136,8 +143,9 @@ public class DBService {
 		pedido2.setPagamento(pagamento2);
 		
 		cliente.getPedidos().addAll(Arrays.asList(pedido,pedido2));
+		cliente2.getPedidos().addAll(Arrays.asList(pedido3));
 		
-		pedidoRepository.saveAll(Arrays.asList(pedido, pedido2));
+		pedidoRepository.saveAll(Arrays.asList(pedido, pedido2, pedido3));
 		pagamentoRepository.saveAll(Arrays.asList(pagamento, pagamento2));
 		
 		ItemPedido itemPedido = new ItemPedido(pedido,produto,0.00,1,2000.00);

@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.shopgamer.services.execeptions.AuthorizationException;
 import com.shopgamer.services.execeptions.DataIntegrityViolationException;
 import com.shopgamer.services.execeptions.ObjectNotFoundExeception;
 
@@ -36,6 +37,13 @@ public class ResourceExeceptionHandler {
 			validationError.addError(fieldError.getField(), fieldError.getDefaultMessage());
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationError);
+	}
+	
+	@ExceptionHandler(AuthorizationException.class)
+	public ResponseEntity<StandardError> authorizationException(AuthorizationException e, HttpServletRequest request) {
+		
+		StandardError standardError = new StandardError(HttpStatus.FORBIDDEN.value(), e.getMessage(), System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(standardError);
 	}
 
 }
