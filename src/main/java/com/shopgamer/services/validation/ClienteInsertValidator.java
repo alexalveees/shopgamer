@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.shopgamer.domain.Cliente;
 import com.shopgamer.domain.enums.TipoCliente;
-import com.shopgamer.dto.ClienteNewDto;
+import com.shopgamer.dto.ClienteNewDTO;
 import com.shopgamer.repositories.ClienteRepository;
 import com.shopgamer.resources.execeptions.FieldMessage;
 import com.shopgamer.services.validation.utils.BR;
 
-public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDto> {
+public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
@@ -25,7 +25,7 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 	}
 
 	@Override
-	public boolean isValid(ClienteNewDto objDto, ConstraintValidatorContext context) {
+	public boolean isValid(ClienteNewDTO objDto, ConstraintValidatorContext context) {
 		
 		List<FieldMessage> list = new ArrayList<>();
 		

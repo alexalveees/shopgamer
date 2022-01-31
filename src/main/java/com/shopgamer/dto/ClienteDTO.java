@@ -11,7 +11,7 @@ import com.shopgamer.domain.Cliente;
 import com.shopgamer.services.validation.ClienteUpdate;
 
 @ClienteUpdate
-public class ClienteDto implements Serializable {
+public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
@@ -24,11 +24,11 @@ public class ClienteDto implements Serializable {
 	@Email(message = "Email inválido")
 	private String email;
 	
-	public ClienteDto() {
+	public ClienteDTO() {
 		
 	}
 	
-	public ClienteDto(Cliente cliente) {
+	public ClienteDTO(Cliente cliente) {
 		id = cliente.getId();
 		nome = cliente.getNome();
 		email = cliente.getEmail();

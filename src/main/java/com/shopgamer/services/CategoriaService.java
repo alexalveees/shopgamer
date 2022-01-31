@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.shopgamer.domain.Categoria;
-import com.shopgamer.dto.CategoriaDto;
+import com.shopgamer.dto.CategoriaDTO;
 import com.shopgamer.repositories.CategoriaRepository;
 import com.shopgamer.services.execeptions.ObjectNotFoundExeception;
 
@@ -47,7 +47,7 @@ public class CategoriaService {
 		try {
 			categoriaRepository.deleteById(id);
 		}catch (DataIntegrityViolationException e) {
-			throw new com.shopgamer.services.execeptions.DataIntegrityViolationException("Não é possivel excluir uma categoria que possui produtos");
+			throw new com.shopgamer.services.execeptions.DataIntegrityViolationExceptio("Não é possivel excluir uma categoria que possui produtos");
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class CategoriaService {
 		return categoriaRepository.findAll(pageRequest);
 	}
 	
-	public Categoria fromDTO(CategoriaDto objDto) {
+	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
 	}
 

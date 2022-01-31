@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopgamer.domain.Produto;
-import com.shopgamer.dto.ProdutoDto;
+import com.shopgamer.dto.ProdutoDTO;
 import com.shopgamer.resources.utils.URL;
 import com.shopgamer.services.ProdutoService;
 
@@ -31,7 +31,7 @@ public class ProdutoResource {
 	}
 	
 	@GetMapping()
-	public ResponseEntity<Page<ProdutoDto>> findPage(
+	public ResponseEntity<Page<ProdutoDTO>> findPage(
 			@RequestParam(value="nome", defaultValue = "") String nome, 
 			@RequestParam(value="categorias", defaultValue = "") String categorias, 
 			@RequestParam(value="page", defaultValue = "0") Integer page, 
@@ -41,7 +41,7 @@ public class ProdutoResource {
 		String nomeDecoded = URL.decodeParam(nome);
 		List<Integer> ids = URL.decodeIntList(categorias);
 		Page<Produto> list = produtoService.search(nomeDecoded,ids,page, linesPerPage, direction, orderBy);
-		Page<ProdutoDto> listDto = list.map(obj -> new ProdutoDto(obj));
+		Page<ProdutoDTO> listDto = list.map(obj -> new ProdutoDTO(obj));
 		return ResponseEntity.ok().body(listDto);
 	}
 

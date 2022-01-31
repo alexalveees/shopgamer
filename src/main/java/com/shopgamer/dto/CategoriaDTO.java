@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.shopgamer.domain.Categoria;
 
-public class CategoriaDto implements Serializable {
+public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
@@ -17,11 +17,11 @@ public class CategoriaDto implements Serializable {
 	@Length(min = 5, max = 80, message = "O tamanho deve ser entre 5 a 80 caracteres")
 	private String nome;
 	
-	public CategoriaDto() {
+	public CategoriaDTO() {
 		
 	}
 	
-	public CategoriaDto(Categoria categoria) {
+	public CategoriaDTO(Categoria categoria) {
 		id = categoria.getId();
 		nome = categoria.getNome();
 	}

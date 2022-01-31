@@ -4,18 +4,18 @@ import java.io.Serializable;
 
 import com.shopgamer.domain.Produto;
 
-public class ProdutoDto implements Serializable {
+public class ProdutoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String nome;
 	private Double preco;
 
-	public ProdutoDto() {
+	public ProdutoDTO() {
 
 	}
 
-	public ProdutoDto(Produto produto) {
+	public ProdutoDTO(Produto produto) {
 		id = produto.getId();
 		nome = produto.getNome();
 		preco = produto.getPreco();

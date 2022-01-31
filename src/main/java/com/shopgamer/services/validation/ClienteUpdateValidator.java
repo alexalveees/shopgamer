@@ -12,11 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
 import com.shopgamer.domain.Cliente;
-import com.shopgamer.dto.ClienteDto;
+import com.shopgamer.dto.ClienteDTO;
 import com.shopgamer.repositories.ClienteRepository;
 import com.shopgamer.resources.execeptions.FieldMessage;
 
-public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDto> {
+public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDTO> {
 	
 	@Autowired
 	private HttpServletRequest httpServletRequest;
@@ -29,7 +29,7 @@ public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate
 	}
 
 	@Override
-	public boolean isValid(ClienteDto objDto, ConstraintValidatorContext context) {
+	public boolean isValid(ClienteDTO objDto, ConstraintValidatorContext context) {
 		
 		@SuppressWarnings("unchecked")
 		Map<String,String> map = (Map<String, String>) httpServletRequest.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);

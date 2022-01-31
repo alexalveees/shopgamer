@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import com.shopgamer.services.validation.ClienteInsert;
 
 @ClienteInsert
-public class ClienteNewDto implements Serializable {
+public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@NotEmpty(message = "Preenchimento obrigatório")
@@ -52,7 +52,7 @@ public class ClienteNewDto implements Serializable {
 	
 	private Integer cidadeId;
 	
-	public ClienteNewDto() {
+	public ClienteNewDTO() {
 		
 	}
 
