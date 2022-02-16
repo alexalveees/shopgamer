@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class HeaderExposureFilter implements Filter {
 
 	@Override
