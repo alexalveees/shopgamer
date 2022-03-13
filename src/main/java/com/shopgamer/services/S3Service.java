@@ -1,4 +1,4 @@
-/*package com.shopgamer.services;
+package com.shopgamer.services;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,4 +50,4 @@ public class S3Service {
 			throw new FileException("Erro ao converter URL para URI");
 		}
 	}
-}*/
+}

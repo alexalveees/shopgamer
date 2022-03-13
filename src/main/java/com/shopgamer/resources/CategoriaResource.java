@@ -81,6 +81,16 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
+	@GetMapping(value ="/total")
+	public ResponseEntity<Integer> findAll(){
+		List<Categoria> list = categoriaService.findAll();
+		Integer sum = 0;
+		for(Integer i = 0; i <= list.size(); i++) {
+			sum =+ i;
+		}
+		return ResponseEntity.ok().body(sum);
+	}
+	
 	
 		
 }

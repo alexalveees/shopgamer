@@ -1,6 +1,7 @@
 package com.shopgamer.services;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,12 @@ public class PedidoService {
 	
 	@Autowired
 	private EmailService emailService;
+	
+	
+	public List<Pedido> findAll(){
+		return pedidoRepository.findAll();
+	}
+	
 
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = pedidoRepository.findById(id);

@@ -44,5 +44,15 @@ public class ProdutoResource {
 		Page<ProdutoDTO> listDto = list.map(obj -> new ProdutoDTO(obj));
 		return ResponseEntity.ok().body(listDto);
 	}
+	
+	@GetMapping(value ="/total")
+	public ResponseEntity<Integer> findAll(){
+		List<Produto> list = produtoService.findAll();
+		Integer sum = 0;
+		for(Integer i = 0; i <= list.size(); i++) {
+			sum =+ i;
+		}
+		return ResponseEntity.ok().body(sum);
+	}
 
 }

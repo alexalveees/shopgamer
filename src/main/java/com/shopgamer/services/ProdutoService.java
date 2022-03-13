@@ -23,6 +23,11 @@ public class ProdutoService {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	
+	public List<Produto> findAll() {
+		return produtoRepository.findAll();
+	}
 
 	public Produto find(Integer id) {
 		Optional<Produto> obj = produtoRepository.findById(id);

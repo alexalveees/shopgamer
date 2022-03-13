@@ -20,6 +20,10 @@ public class CategoriaService {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	public List<Categoria>findAll(){
+		return categoriaRepository.findAll();
+	}
 
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = categoriaRepository.findById(id);

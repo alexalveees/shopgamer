@@ -1,4 +1,4 @@
-/*package com.shopgamer.services;
+package com.shopgamer.services;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -66,4 +66,4 @@ public class ImageService {
 	public BufferedImage resize(BufferedImage sourceImg, int size) {
 		return Scalr.resize(sourceImg, Scalr.Method.ULTRA_QUALITY, size);
 	}
-}*/
+}

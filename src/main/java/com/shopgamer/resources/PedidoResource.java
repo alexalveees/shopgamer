@@ -1,6 +1,7 @@
 package com.shopgamer.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -48,6 +49,16 @@ public class PedidoResource {
 			@RequestParam(value="direction", defaultValue="DESC") String direction) {
 		Page<Pedido> list = pedidoService.findPage(page, linesPerPage, orderBy, direction);
 		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value ="/total")
+	public ResponseEntity<Integer> findAll(){
+		List<Pedido> list = pedidoService.findAll();
+		Integer sum = 0;
+		for(Integer i = 0; i <= list.size(); i++) {
+			sum =+ i;
+		}
+		return ResponseEntity.ok().body(sum);
 	}
 
 }

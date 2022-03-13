@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.shopgamer.domain.Cliente;
@@ -87,10 +88,20 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 
-	/*@PostMapping(value = "/picture")
+	@PostMapping(value = "/picture")
 	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name = "file") MultipartFile file) {
 		URI uri = clienteService.uploadProfilePicture(file);
 		return ResponseEntity.created(uri).build();
-	}*/
+	}
+	
+	@GetMapping(value ="/total")
+	public ResponseEntity<Integer> findAll(){
+		List<Cliente> list = clienteService.findAll();
+		Integer sum = 0;
+		for(Integer i = 0; i <= list.size(); i++) {
+			sum =+ i;
+		}
+		return ResponseEntity.ok().body(sum);
+	}
 
 }
