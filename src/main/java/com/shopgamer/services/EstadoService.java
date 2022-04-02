@@ -17,4 +17,9 @@ public class EstadoService {
 	public List<Estado> findAll() {
 		return estadoRepository.findAllByOrderByNome();
 	}
+	
+	public long count() {
+		return estadoRepository.count();
+	}
+	
 }

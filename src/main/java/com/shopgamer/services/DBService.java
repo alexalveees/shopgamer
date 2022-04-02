@@ -1048,7 +1048,7 @@ public class DBService {
 		Cidade cid2132 = new Cidade(null, "Serranópolis de Minas", est11);
 		Cidade cid2133 = new Cidade(null, "Serranos", est11);
 		Cidade cid2134 = new Cidade(null, "Serro", est11);
-		Cidade cid2135 = new Cidade(null, "Seste Lagoas", est11);
+		Cidade cid2135 = new Cidade(null, "Sete Lagoas", est11);
 		Cidade cid2136 = new Cidade(null, "Silveirânia", est11);
 		Cidade cid2137 = new Cidade(null, "Silvianópolis", est11);
 		Cidade cid2138 = new Cidade(null, "Simão Pereira", est11);

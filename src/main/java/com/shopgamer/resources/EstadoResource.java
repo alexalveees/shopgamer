@@ -40,4 +40,16 @@ public class EstadoResource {
 		List<CidadeDTO> listDto = list.stream().map(obj -> new CidadeDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
+	
+	@GetMapping(value ="cidades/total")
+	public ResponseEntity<Long> count(){
+		Long sum = cidadeService.count();
+		return ResponseEntity.ok().body(sum);
+	}
+	
+	@GetMapping(value ="/total")
+	public ResponseEntity<Long> total(){
+		Long sum = estadoService.count();
+		return ResponseEntity.ok().body(sum);
+	}
 }
